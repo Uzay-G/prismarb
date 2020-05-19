@@ -21,7 +21,7 @@ module Prismarb
           self.commands[message] = 1
       end
 
-      match = @servers.find { |i| i["name"] == server.name)
+      match = @servers.find { |i| i["name"] == server.name }
       
       if match.nil?
           new_server = {
@@ -60,9 +60,9 @@ module Prismarb
               "servers": self.servers
               }
 
-          Net::HTTP.post URI('https://prismalytics.herokuapp.com/send_data')
+          Net::HTTP.post URI('https://prismalytics.herokuapp.com/send_data'),
                         data.to_json,
-                        "key": @key
+                        "key" => @key
 
           # reinitialize stored data as it has been sent
           @commands = {}
