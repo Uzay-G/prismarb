@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prismarb (0.9)
+    prismarb (1.0)
 
 GEM
   remote: https://rubygems.org/
