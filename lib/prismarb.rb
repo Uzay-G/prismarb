@@ -1,4 +1,3 @@
-require "prismarb/version"
 require 'net/http'
 require 'uri'
 module Prismarb
