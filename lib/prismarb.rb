@@ -59,7 +59,7 @@ module Prismarb
               "servers": @servers.to_json
               }
 	  
-          uri = URI('http://localhost:3000/send_data')
+          uri = URI('https://prismalytics.herokuapp.com/send_data')
           req = Net::HTTP::Post.new(uri.path)
           req.set_form_data(data)
 	  req["key"] = @key
