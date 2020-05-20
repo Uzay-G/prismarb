@@ -41,8 +41,8 @@ Then, whenever your bot gets sent a message with its prefix. So, for example:
 ```ruby
 require 'discordrb'
 require 'prismarb'
-bot = Discordrb::Bot.new token: 'NzA2OTA0NjMzNjk1NjY2MTc3.XsQS0Q.zJ3QaejYl7_4Fv7fmsZFLle5wYU'
-analytics = Prismarb::Prismalytics.new("IjGMCkmcvcTFoHAACx2ssg")
+bot = Discordrb::Bot.new token: '<discord bot token>'
+analytics = Prismarb::Prismalytics.new("<prismalytics api key>")
 puts "This bot's invite URL is sdsds"
 puts 'Click on it to invite it to your server.'
 
