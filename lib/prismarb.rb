@@ -45,7 +45,7 @@ module Prismarb
           @time = Time.now
           unset = true
       end
-      server = message.guild
+      server = message.channel.server
       process_data(message, server)
       
 
@@ -54,15 +54,18 @@ module Prismarb
       if (unset or interval > 5)
           @time = curr_time
           data = {
-              "commands":  @commands,
+              "commands":  @commands.to_json,
               "save_server": @save_server,
-              "servers": @servers
+              "servers": @servers.to_json
               }
-
-          Net::HTTP.post URI('https://prismalytics.herokuapp.com/send_data'),
-                        data.to_json,
-                        "key" => @key
-
+	  
+          uri = URI('http://localhost:3000/send_data')
+          req = Net::HTTP::Post.new(uri.path)
+          req.set_form_data(data)
+	  req["key"] = @key
+	  res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+	     http.request(req)
+          end
           # reinitialize stored data as it has been sent
           @commands = {}
           @servers = []
