@@ -22,18 +22,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Setup a new bot at https://prismalytics.herokuapp.com and copy its bot token.
 
-## Development
+Require the gem in your code:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+require "prismarb"
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Initialize the connection with the library using your secret key:
 
-## Contributing
+```
+analytics = Prismarb::Prismalytics.new("IjGMCkmcvcTFoHAACx2ssg")
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/prismarb.
+Then, whenever your bot gets sent a message with its prefix. So, for example:
 
+```ruby
+require 'discordrb'
+require 'prismarb'
+bot = Discordrb::Bot.new token: 'NzA2OTA0NjMzNjk1NjY2MTc3.XsQS0Q.zJ3QaejYl7_4Fv7fmsZFLle5wYU'
+analytics = Prismarb::Prismalytics.new("IjGMCkmcvcTFoHAACx2ssg")
+puts "This bot's invite URL is sdsds"
+puts 'Click on it to invite it to your server.'
+
+bot.message(content: '~Ping!') do |event|
+  event.respond 'Pong!'
+  analytics.send(event.message)
+end
+bot.run
+```
 
 ## License
 
